@@ -122,7 +122,7 @@ def load_discr(mode, device='cpu', path: Text = '.'):
             p.data = p.data.float() 
         discr_layers = [ "layer1", "layer2", "layer3", "layer4"]
     elif mode == "clip":
-        discr, _ = clip.load("RN50", device=device)
+        discr, _ = clip.load("RN50", device=device, jit = False)
         discr_layers = [ "visual.layer1", "visual.layer2", "visual.layer3", "visual.layer4"]
         for p in discr.parameters(): 
             p.data = p.data.float()
