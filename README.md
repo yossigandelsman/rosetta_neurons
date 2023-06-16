@@ -1,5 +1,5 @@
 # Rosetta Neurons
-[[paper](https://arxiv.org/abs/2112.05814)] [[project page](https://yossigandelsman.github.io/rosetta_neurons)]
+[[paper](https://arxiv.org/abs/2306.09346)] [[project page](https://yossigandelsman.github.io/rosetta_neurons)]
 
 Official implementation of the paper "Rosetta Neurons: Mining the Common Units in a Model Zoo."
 
@@ -47,3 +47,15 @@ DINO-ResNet50, DINO-ViT, MAE, CLIP-ResNet50). This can be found in `notebooks/Vi
 ## Rosetta Neurons-Guided Editing (Shift, Zoom, Copy & Paste) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://drive.google.com/file/d/1gNfBQb9zHH-tpBBeyajetgijsyD5civC/view?usp=sharing)
 We provide a notebook for conducting Rosetta Neurons-guided editing (shifting, zooming, copying and pasting) in `notebooks/shift_zoom_copypaste.ipynb`. An example of such edits is shown below. 
 ![edit1](./assets/editing1.png)
+
+
+## Citation
+If you found this repository useful please consider starring ⭐ and citing:
+```
+@article{rosettaneurons,
+    author    = {Dravid, Amil and Gandelsman, Yossi and Efros, Alexei A. and Shocher, Assaf},
+    title     = {Rosetta Neurons: Mining the Common Units in a Model Zoo},
+    journal   = {arXiv preprint arXiv:2306.09346},
+    year      = {2023}
+}
+```
