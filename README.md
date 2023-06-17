@@ -48,6 +48,10 @@ DINO-ResNet50, DINO-ViT, MAE, CLIP-ResNet50). This can be found in `notebooks/Vi
 We provide a notebook for conducting Rosetta Neurons-guided editing (shifting, zooming, copying and pasting) in `notebooks/shift_zoom_copypaste.ipynb`. An example of such edits is shown below. 
 ![edit1](./assets/editing1.png)
 
+## Rosetta Neurons-Guided Inversion [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://drive.google.com/file/d/18ACFeah5Ey0XaYS2ywOiqWlG2gfgOVWW/view?usp=sharing)
+We provide a notebook (`notebooks/rosetta-inversion-stylegan-xl.ipynb`) for conducting Rosetta Neurons-guided inversion with StyleGAN-XL, which can also facilitate cross-class alignment or image-to-image translation into the GAN's domain. The method is shown below. 
+![inversion](./assets/inversion.PNG)
+
 
 ## Citation
 If you found this repository useful please consider starring ⭐ and citing:
