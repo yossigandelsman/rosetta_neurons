@@ -61,10 +61,12 @@ We provide a notebook (`notebooks/rosetta-inversion-stylegan-xl.ipynb`) for cond
 ## Citation
 If you found this repository useful please consider starring ⭐ and citing:
 ```
-@article{rosettaneurons,
+@InProceedings{Dravid_2023_ICCV,
     author    = {Dravid, Amil and Gandelsman, Yossi and Efros, Alexei A. and Shocher, Assaf},
     title     = {Rosetta Neurons: Mining the Common Units in a Model Zoo},
-    journal   = {arXiv preprint arXiv:2306.09346},
-    year      = {2023}
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {1934-1943}
 }
 ```
