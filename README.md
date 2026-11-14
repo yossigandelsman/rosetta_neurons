@@ -8,14 +8,32 @@ Official implementation of the paper "Rosetta Neurons: Mining the Common Units i
 >We demonstrate the existence of common features we call ``Rosetta Neurons" across a range of models with different architectures, different tasks (generative and discriminative), and different types of supervision (class-supervised, text-supervised, self-supervised). We present an algorithm for mining a dictionary of Rosetta Neurons across several popular vision models: Class Supervised-ResNet50, DINO-ResNet50, DINO-ViT, MAE, CLIP-ResNet50, BigGAN, StyleGAN-2, StyleGAN-XL. Our findings suggest that certain visual concepts and structures are inherently embedded in the natural world and can be learned by different models regardless of the specific task or architecture, and without the use of semantic labels. We can visualize shared concepts directly due to generative models included in our analysis. The Rosetta Neurons facilitate model-to-model translation enabling various inversion-based manipulations, including cross-class alignments, shifting, zooming, and more, without the need for specialized training.
 
 ## Setup
-Our code is developed in `PyTorch 1.13` with`python=3.8.5` and `CUDA 11.7`.
+The current environment uses **Python 3.11**, **PyTorch 2.6.0**, and **Pillow 13.0.0**. Pillow 13 fixes [GHSA-xcvg-w56q-r89m](https://github.com/advisories/GHSA-xcvg-w56q-r89m) and requires Python 3.11 or newer. The Python version is pinned to 3.11 because some of the research code still uses `distutils`.
 
-To replicate our environment, install [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html), and run the following commands.
+Create a fresh environment from the repository root (Git is required for the pinned OpenAI CLIP dependency):
+```sh
+conda env create -f rosetta.yml
+conda activate rosetta
+python -m pip check
 ```
-$ conda env create -f rosetta.yml
-$ conda activate rosetta
+Both Conda and pip use the direct dependency list in `requirements.txt`; the previous machine-specific environment exports contained conflicting PyTorch versions. If you prefer a virtual environment:
+```sh
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip check
 ```
-If you run any of the code and receive the following error: `CUDA error: no kernel image is available for execution on the device`, you can fix this simply by installing the PyTorch version compatible with your CUDA device (see [here](https://pytorch.org/get-started/previous-versions/)).
+For NVIDIA runs, install the matching PyTorch 2.6.0 / torchvision 0.21.0 build for your driver from the [official installation matrix](https://pytorch.org/get-started/previous-versions/#v260). StyleGAN2/3/XL custom CUDA operations also require a compatible local CUDA toolkit (`nvcc`) and C++ compiler. CPU smoke tests do not validate those kernels or reproduce the pretrained-model results.
+
+Run the checks without downloading checkpoints or requiring a GPU:
+```sh
+python -m unittest discover -s tests -v
+python match.py --help
+```
+These cover Pillow/torchvision preprocessing, TIFF metadata handling, MAE loading and forward passes, and the custom grid-sampling gradients. Use trusted model checkpoints; the original StyleGAN pickle files contain executable Python objects.
+
+The paper's original Python 3.8 / PyTorch 1.13 / CUDA 11.7 environment is available in [the historical source](https://github.com/yossigandelsman/rosetta_neurons/tree/3eb215f616dbf8b9e7c8af218618b77222552b4b). It includes vulnerable Pillow versions and should not be used to process untrusted images. Existing environments must be recreated to receive this update.
 
 The StyleGAN2, StyleGAN3, and MAE models require checkpoints, which can be downloaded from [here](https://drive.google.com/drive/folders/1NGKgKxcyor7enTMcFcO9B55RSmAU_eHx?usp=sharing). Place the checkpoint files in the parent directory. 
 

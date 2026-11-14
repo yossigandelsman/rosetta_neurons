@@ -7,7 +7,7 @@ from typing import Union, List
 import torch
 import torch.nn as nn
 from PIL import Image
-from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
+from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize, InterpolationMode
 from tqdm import tqdm
 
 from .model import build_model
@@ -58,7 +58,7 @@ def _download(url: str, root: str = os.path.expanduser("~/.cache/clip")):
 
 def _transform(n_px):
     return Compose([
-        Resize(n_px, interpolation=Image.BICUBIC),
+        Resize(n_px, interpolation=InterpolationMode.BICUBIC),
         CenterCrop(n_px),
         lambda image: image.convert("RGB"),
         ToTensor(),

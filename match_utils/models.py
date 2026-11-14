@@ -1,4 +1,3 @@
-import tensorflow
 import torch
 from pytorch_pretrained_biggan import (BigGAN, one_hot_from_names, truncated_noise_sample,
                                        save_as_images, display_in_terminal)
@@ -8,7 +7,6 @@ import clip
 import dnnlib
 import styleganxl.legacy
 import pickle
-from stylegan2.model import Generator
 from mae import load_mae
 import timm.models.vision_transformer
 from typing import Text
@@ -16,6 +14,9 @@ import os.path
 
 
 def load_gan(mode, device = 'cpu', path: Text = '.'):
+    if mode in {"stylegan2-lsun_cat", "stylegan2-lsun_horse", "stylegan2-lsun_car", "stylegan2-ffhq"}:
+        from stylegan2.model import Generator
+
     if mode == "biggan":
         gan = BigGAN.from_pretrained('biggan-deep-256').to(device)
         gan_layers = []
