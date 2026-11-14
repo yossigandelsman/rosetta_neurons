@@ -1,3 +1,4 @@
+from argparse import Namespace
 from functools import partial
 
 import torch
@@ -65,7 +66,9 @@ def vit_huge_patch14(**kwargs):
 
 def load_mae(path):
     model = vit_base_patch16()
-    checkpoint = torch.load(path, map_location='cpu')
+    # Official MAE checkpoints include the training arguments as a Namespace.
+    with torch.serialization.safe_globals([Namespace]):
+        checkpoint = torch.load(path, map_location='cpu', weights_only=True)
     checkpoint_model = checkpoint['model']
     state_dict = model.state_dict()
     for k in ['head.weight', 'head.bias']:

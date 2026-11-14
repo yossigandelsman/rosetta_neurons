@@ -3,7 +3,7 @@ arbitrarily high order gradients with zero performance penalty."""
 
 import contextlib
 import torch
-from pkg_resources import parse_version
+from packaging.version import parse as parse_version
 
 # pylint: disable=redefined-builtin
 # pylint: disable=arguments-differ
